@@ -1,0 +1,6 @@
+Just create the mysql database and set the config file on src/server/config.js
+
+npm install
+
+npm run dev
+automatically create tables

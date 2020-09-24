@@ -28,6 +28,9 @@ module.exports = function (sequelize) {
     remittance_address: {
       type: Sequelize.STRING,
     },
+    status: {
+      type: Sequelize.STRING,
+    },
   }, {
     timestamps: true,
   });

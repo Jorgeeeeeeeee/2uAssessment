@@ -1,23 +1,86 @@
-import React, { Component } from 'react';
-import './app.css';
-import ReactImage from './react.png';
+import React, { Component } from "react";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
-export default class App extends Component {
-  state = { username: null };
+import "bootstrap/dist/css/bootstrap.min.css";
+import uuid from "uuid";
+class App extends Component {
+  state = {
+    items: [],
+    id: uuid(),
+    item: "",
+    editItem: false
+  };
+  handleChange = e => {
+    this.setState({
+      item: e.target.value
+    });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    };
 
+    const updatedItems = [...this.state.items, newItem];
+
+    this.setState({
+      items: updatedItems,
+      item: "",
+      id: uuid(),
+      editItem: false
+    });
+  };
+  clearList = () => {
+    this.setState({
+      items: []
+    });
+  };
+  handleDelete = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    this.setState({
+      items: filteredItems
+    });
+  };
+  handleEdit = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+
+    const selectedItem = this.state.items.find(item => item.id === id);
+
+    console.log(selectedItem);
+
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      editItem: true,
+      id: id
+    });
+  };
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+      <div className="container">
+        <div className="row">
+          <div className="col-10 mx-auto col-md-8 mt-4">
+            <h3 className="text-capitalize text-center">todo input</h3>
+            <TodoInput
+              item={this.state.item}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              editItem={this.state.editItem}
+            />
+            <TodoList
+              items={this.state.items}
+              clearList={this.clearList}
+              handleDelete={this.handleDelete}
+              handleEdit={this.handleEdit}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 }
+
+export default App;

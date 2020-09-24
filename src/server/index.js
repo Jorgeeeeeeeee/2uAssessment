@@ -17,6 +17,10 @@ app.use(cors());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
 
+  //dev
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+  //
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
   if ('OPTIONS' == req.method) {
@@ -46,6 +50,7 @@ app.post('/api/invoice', (req, res) => {
   const { invoice_number, total, currency, invoice_date, due_date, vendor_name, remittance_address} = req.body;
 
       const invoiceData = {
+        status:'pending',
         invoice_number: invoice_number,
         total: total,
         currency: currency,
@@ -57,7 +62,7 @@ app.post('/api/invoice', (req, res) => {
 
       models.invoice.create(invoiceData).then(async (i) => {
             console.log(i)
-            return res.status(200).send({ result: 'ok', message: "invoice submitted successfully"});
+            return res.status(200).send({message: "invoice submitted successfully"});
       }).catch(error => {
             console.log(error)
             return res.status(200).send({ error: { message:'Intente nuevamente ocurrió un error' } });
