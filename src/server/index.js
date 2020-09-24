@@ -40,10 +40,6 @@ app.set('sequelize', models.sequelize);
 app.set('models', models.sequelize.models);
 models.sequelize.sync()
 
-
-app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
-
-
 app.post('/api/invoice', (req, res) => {
 
   console.log(req.body)
@@ -62,13 +58,34 @@ app.post('/api/invoice', (req, res) => {
 
       models.invoice.create(invoiceData).then(async (i) => {
             console.log(i)
-            return res.status(200).send({message: "invoice submitted successfully"});
+            return res.status(200).json({message: "invoice submitted successfully"});
       }).catch(error => {
             console.log(error)
-            return res.status(200).send({ error: { message:'Intente nuevamente ocurrió un error' } });
+            return res.status(200).json({ error: { message:'Intente nuevamente ocurrió un error' } });
       });
 
 
+});
+
+
+app.get('/api/invoices', (req, res) => {
+      models.invoice.findAll({
+        where: {
+          //your where conditions, or without them if you need ANY entry
+        },
+        order: [ [ 'createdAt', 'DESC' ]]
+
+      }).then(function(invoices){
+        if (invoices) {
+          return res.json({ data:invoices});
+        }
+        return res.status(200).json({error: {message: 'Broken.' } });
+
+      }).catch(err => {
+        console.log(err);
+        // return res.status(400).send({ error: {message: err.toString() }  });
+        return res.status(400).json({ error: {message: 'Broken.' }  });
+      });
 });
 
 
