@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addItems } from '../actions';
+import { addItems, listarItems } from '../actions';
+import * as Actions from '../actions';
 
 const App = ({ qty, dispatch }) => {
     let input, item;
-
+    dispatch(Actions.listarItems());
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!input.value.trim()) { return }

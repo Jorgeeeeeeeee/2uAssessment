@@ -77,7 +77,7 @@ app.get('/api/invoices', (req, res) => {
 
       }).then(function(invoices){
         if (invoices) {
-          return res.json({ data:invoices});
+          return res.json({ result:{data:invoices} });
         }
         return res.status(200).json({error: {message: 'Broken.' } });
 

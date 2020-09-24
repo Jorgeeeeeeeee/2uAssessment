@@ -1,5 +1,10 @@
+
 const items = (state = [], action) => {
     switch (action.type) {
+      case 'LOAD_ITEMS':
+          return [
+              payload
+          ]
         case 'ADD_ITEMS':
             return [
                 ...state,
