@@ -2,9 +2,7 @@
 let items = (state = [], action) => {
     switch (action.type) {
       case 'LISTAR_INVOICES_SUCCESS':
-        console.log('items invoices ' + JSON.stringify(action.payload))
           const returnedArray = (action.payload)
-          console.log('return ' + JSON.stringify(returnedArray.data))
           let fullA = [];
           returnedArray.data.forEach(item =>
               fullA.push({
@@ -30,15 +28,10 @@ let items = (state = [], action) => {
    case 'UPDATE_ITEM':
        let prevState = [...state];
        const updArray = (action.payload)
-       console.log('update itemxx ' + JSON.stringify(prevState))
-
-       // const idi = updArray.data.id;
-
        var removeIndex = prevState.map(item => item.id)
                               .indexOf(updArray.data.id);
        //(removeIndex >= 0)
        ~removeIndex && prevState.splice(removeIndex, 1);
-       console.log('update item xxx ' + JSON.stringify(prevState))
 
        let fullB = [];
        prevState.forEach(item =>
@@ -54,9 +47,6 @@ let items = (state = [], action) => {
              status:item.status,
              completed:false})
        )
-
-
-       console.log('update item xxx ' + JSON.stringify(fullB))
 
        return fullB;
 

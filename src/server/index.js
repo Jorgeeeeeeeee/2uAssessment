@@ -71,6 +71,7 @@ app.post('/api/invoice', (req, res) => {
 app.get('/api/invoices', (req, res) => {
       models.invoice.findAll({
         where: {
+          status:'pending'
           //your where conditions, or without them if you need ANY entry
         },
         order: [ [ 'createdAt', 'DESC' ]]

@@ -1,27 +1,23 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
-import { addItems, listarItems } from '../actions';
+import { listarItems } from '../actions';
 
 const App = ({ qty, dispatch }) => {
     let input, item;
 
+    useEffect(() => {
 
-    dispatch(listarItems());
+      setInterval(function() {
+          dispatch(listarItems());
+      }, 3 * 1000);
 
+    },[]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!input.value.trim()) { return }
-        item = {
-            text: input.value
-        }
-        dispatch(addItems(item));
-        input.value = '';
-    };
 
     return (
         <div className={'wrapper'}>
       <h1>2ULAUNDRY INVOICES</h1>
+      <span>Click on the invoice to Approve</span>
       {/*        <form onSubmit={handleSubmit} >
                 <div className={'div-wrapper'}>
                     <label>Todo: </label>
