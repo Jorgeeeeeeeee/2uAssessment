@@ -20,7 +20,7 @@ class apiService {
         });
     };
 
-    uodateInvoice = id => {
+    updateInvoice = id => {
         return new Promise((resolve, reject) => {
             axios.post('/api/invoices', {id:id})
                 .then(response => {

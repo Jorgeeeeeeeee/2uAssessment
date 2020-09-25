@@ -103,8 +103,7 @@ app.post('/api/invoices', (req, res) => {
 
       }).then(function(invoice){
         if (invoice) {
-
-          return res.json({ result:{data:invoices} });
+          return res.json({ result:{message:"Approved!", data:invoice} });
         }
         return res.status(200).json({error: {message: 'Broken.' } });
 

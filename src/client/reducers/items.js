@@ -36,9 +36,11 @@ let items = (state = [], action) => {
                 }
             ]
         case 'UPDATE_ITEM':
-            return state.map(item =>
-                item.id === action.id ? { ...item, completed: !item.completed } : item
-            )
+        return [
+          {
+              result: action.payload
+          }
+        ]
         default:
             return state
     }

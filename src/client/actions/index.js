@@ -19,7 +19,7 @@ export const addItems = item => ({
 
 export function updateItem(id) {
       return (dispatch) =>
-            apiService.listarInvoices()
+            apiService.updateInvoice(id)
                 .then((result) => {
                   console.log('resultxx ' + JSON.stringify(result))
                     return dispatch({
