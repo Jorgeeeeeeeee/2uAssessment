@@ -5,7 +5,7 @@ let items = (state = [], action) => {
         console.log('items invoices ' + JSON.stringify(action.payload))
           const returnedArray = (action.payload)
           console.log('return ' + JSON.stringify(returnedArray.data))
-          var fullA = [];
+          let fullA = [];
           returnedArray.data.forEach(item =>
               fullA.push({
                 id:item.id,
@@ -26,22 +26,51 @@ let items = (state = [], action) => {
                  error: action.payload,
              }
            ]
-        case 'ADD_ITEMS':
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
-            ]
-        case 'UPDATE_ITEM':
-        return [
-          {
-              result: action.payload
-          }
-        ]
-        default:
+
+   case 'UPDATE_ITEM':
+       let prevState = [...state];
+       const updArray = (action.payload)
+       console.log('update itemxx ' + JSON.stringify(updArray.data))
+
+       // const idi = updArray.data.id;
+
+       var removeIndex = prevState.map(item => item.id)
+                              .indexOf(updArray.data.id);
+       //(removeIndex >= 0)
+       ~removeIndex && prevState.splice(removeIndex, 1);
+
+       let fullB = [];
+       prevState.forEach(item =>
+           fullB.push({
+             id:item.id,
+             invoice_number:item.invoice_number,
+             total:item.total,
+             currency:item.currency,
+             invoice_date:item.invoice_date,
+             due_date:item.due_date,
+             vendor_name:item.vendor_name,
+             remittance_address:item.remittance_address,
+             status:item.status,
+             completed:false})
+       )
+        return fullB;
+
+
+       console.log('update item xxx ' + JSON.stringify(fullB))
+
+       return [prevState];
+
+    case 'ADD_ITEMS':
+          return [
+              ...state,
+              {
+                  id: action.id,
+                  text: action.text,
+                  completed: false
+              }
+          ]
+
+    default:
             return state
     }
 }
