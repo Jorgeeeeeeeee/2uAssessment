@@ -21,7 +21,7 @@ export function updateItem(id) {
       return (dispatch) =>
             apiService.updateInvoice(id)
                 .then((result) => {
-                  console.log('resultxx ' + JSON.stringify(result))
+                  console.log('updating ' + JSON.stringify(result))
                     return dispatch({
                             type: UPDATE_ITEM,
                             payload: result

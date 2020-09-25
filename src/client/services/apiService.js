@@ -34,6 +34,8 @@ class apiService {
                     }
                 })
                  .catch((error) => {
+                   reject(response.data.error);
+
                     console.log(error)
                 });
         });

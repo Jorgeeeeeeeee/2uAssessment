@@ -39,7 +39,7 @@ const models = require('./models');
 app.set('sequelize', models.sequelize);
 app.set('models', models.sequelize.models);
 models.sequelize.sync()
-
+//post a new invoice
 app.post('/api/invoice', (req, res) => {
 
   console.log(req.body)
@@ -67,7 +67,7 @@ app.post('/api/invoice', (req, res) => {
 
 });
 
-
+//List invoices
 app.get('/api/invoices', (req, res) => {
       models.invoice.findAll({
         where: {
@@ -90,11 +90,10 @@ app.get('/api/invoices', (req, res) => {
 
 
 
-
+//Approve invoices
 app.post('/api/invoices', (req, res) => {
       const {id} = req.body;
-      models.invoice.findAll({
-        limit:1,
+      models.invoice.findOne({
         where: {
           id:id,
           //your where conditions, or without them if you need ANY entry
@@ -102,7 +101,12 @@ app.post('/api/invoices', (req, res) => {
         order: [ [ 'createdAt', 'DESC' ]]
 
       }).then(function(invoice){
+
         if (invoice) {
+          invoice.update({
+            status: 'Approved'
+          });
+
           return res.json({ result:{message:"Approved!", data:invoice} });
         }
         return res.status(200).json({error: {message: 'Broken.' } });

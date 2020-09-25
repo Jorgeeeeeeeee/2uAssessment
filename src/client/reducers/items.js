@@ -30,7 +30,7 @@ let items = (state = [], action) => {
    case 'UPDATE_ITEM':
        let prevState = [...state];
        const updArray = (action.payload)
-       console.log('update itemxx ' + JSON.stringify(updArray.data))
+       console.log('update itemxx ' + JSON.stringify(prevState))
 
        // const idi = updArray.data.id;
 
@@ -38,6 +38,7 @@ let items = (state = [], action) => {
                               .indexOf(updArray.data.id);
        //(removeIndex >= 0)
        ~removeIndex && prevState.splice(removeIndex, 1);
+       console.log('update item xxx ' + JSON.stringify(prevState))
 
        let fullB = [];
        prevState.forEach(item =>
@@ -53,12 +54,11 @@ let items = (state = [], action) => {
              status:item.status,
              completed:false})
        )
-        return fullB;
 
 
        console.log('update item xxx ' + JSON.stringify(fullB))
 
-       return [prevState];
+       return fullB;
 
     case 'ADD_ITEMS':
           return [
