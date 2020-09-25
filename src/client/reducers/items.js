@@ -47,7 +47,7 @@ let items = (state = [], action) => {
              status:item.status,
              completed:false})
        )
-
+       alert('Approved Invoice Number: ' + updArray.data.invoice_number)
        return fullB;
 
     case 'ADD_ITEMS':
