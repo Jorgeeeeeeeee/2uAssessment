@@ -19,9 +19,10 @@ export function listarItems() {
       return (dispatch) =>
             apiService.listarInvoices()
                 .then((result) => {
-                  console.log(result)
+                  console.log('resultxx ' + JSON.stringify(result))
                     return dispatch({
                             type: LISTAR_INVOICES_SUCCESS,
+                            payload:result
                           });
                 })
                 .catch((error) => {

@@ -6,8 +6,9 @@ import Item from './Item';
 
 const ItemsList = ({ items, updateItem }) => (
     <ul className={'item-list'}>
-        {items.map(item => (
-            <Item key={ item.id } {...item} onClick={() => updateItem(item.id)}/>
+        {
+          items.map(item => (
+            <Item key={item.id} {...item} onClick={() => updateItem(item.id)}/>
         ))}
     </ul>
 )

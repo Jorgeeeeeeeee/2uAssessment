@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Item = ({ onClick, completed, text, number }) => (
-  <li className={'item'}
+const Item = ({ onClick, completed, id, text}) => (
+  <li key={id} className={'item'}
     onClick={onClick}
     style={{
-      textDecoration: completed ? 'line-through' : 'none'
+      textDecoration: (status == 'pending') ? 'line-through' : 'none'
     }}
   >
     {text}
@@ -14,8 +14,9 @@ const Item = ({ onClick, completed, text, number }) => (
 
 Item.propTypes = {
   onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  // key: PropTypes.func.isRequired,
+  // completed: PropTypes.bool.isRequired,
+  // text: PropTypes.string.isRequired
 }
 
 export default Item
