@@ -4,10 +4,20 @@ let items = (state = [], action) => {
       case 'LISTAR_INVOICES_SUCCESS':
         console.log('items invoices ' + JSON.stringify(action.payload))
           const returnedArray = (action.payload)
-          console.log('return ' +JSON.stringify(returnedArray.data))
+          console.log('return ' + JSON.stringify(returnedArray.data))
           var fullA = [];
           returnedArray.data.forEach(item =>
-              fullA.push({ id:item.id, text:item.currency, completed:false})
+              fullA.push({
+                id:item.id,
+                invoice_number:item.invoice_number,
+                total:item.total,
+                currency:item.currency,
+                invoice_date:item.invoice_date,
+                due_date:item.due_date,
+                vendor_name:item.vendor_name,
+                remittance_address:item.remittance_address,
+                status:item.status,
+                completed:false})
           )
            return fullA;
         case 'ADD_ITEMS':
