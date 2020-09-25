@@ -75,7 +75,7 @@ app.get('/api/invoices', (req, res) => {
         },
         order: [ [ 'createdAt', 'DESC' ]]
 
-      }).then(function(invoices){
+      }).then(async function(invoices){
         if (invoices) {
           return res.json({ result:{data:invoices} });
         }
@@ -87,6 +87,35 @@ app.get('/api/invoices', (req, res) => {
         return res.status(400).json({ error: {message: 'Broken.' }  });
       });
 });
+
+
+
+
+app.post('/api/invoices', (req, res) => {
+      const {id} = req.body;
+      models.invoice.findAll({
+        limit:1,
+        where: {
+          id:id,
+          //your where conditions, or without them if you need ANY entry
+        },
+        order: [ [ 'createdAt', 'DESC' ]]
+
+      }).then(function(invoice){
+        if (invoice) {
+
+          return res.json({ result:{data:invoices} });
+        }
+        return res.status(200).json({error: {message: 'Broken.' } });
+
+      }).catch(err => {
+        console.log(err);
+        // return res.status(400).send({ error: {message: err.toString() }  });
+        return res.status(400).json({ error: {message: 'Broken.' }  });
+      });
+});
+
+
 
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));

@@ -12,10 +12,31 @@ export const addItems = item => ({
     text: item.text
 });
 
-export const updateItem = id => ({
-    type: UPDATE_ITEM,
-    id
-});
+// export const updateItem = id => ({
+//     type: UPDATE_ITEM,
+//     id
+// });
+
+export function updateItem(id) {
+      return (dispatch) =>
+            apiService.listarInvoices()
+                .then((result) => {
+                  console.log('resultxx ' + JSON.stringify(result))
+                    return dispatch({
+                            type: UPDATE_ITEM,
+                            payload: result
+                          });
+                })
+                .catch((error) => {
+
+                  console.log(error)
+                    return dispatch({
+                        type   : LISTAR_INVOICES_ERROR,
+                        payload: error
+                    });
+                });
+}
+
 
 export function listarItems() {
       return (dispatch) =>

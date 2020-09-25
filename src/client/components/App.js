@@ -4,7 +4,7 @@ import { addItems, listarItems } from '../actions';
 
 const App = ({ qty, dispatch }) => {
     let input, item;
-    
+
 
     dispatch(listarItems());
 
@@ -21,8 +21,8 @@ const App = ({ qty, dispatch }) => {
 
     return (
         <div className={'wrapper'}>
-            <h1>TODOS</h1>
-            <form onSubmit={handleSubmit} >
+      <h1>2ULAUNDRY INVOICES</h1>
+      {/*        <form onSubmit={handleSubmit} >
                 <div className={'div-wrapper'}>
                     <label>Todo: </label>
                     <input type="text" name="name" ref={node => (input = node)} />
@@ -31,7 +31,7 @@ const App = ({ qty, dispatch }) => {
                     <label>&nbsp;</label>
                     <input type="submit" value="Submit" />
                 </div>
-            </form>
+            </form>*/}
         </div>
     )
 }
