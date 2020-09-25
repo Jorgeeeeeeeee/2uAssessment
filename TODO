@@ -3,4 +3,26 @@ Just create the mysql database and set the config file on src/server/config.js
 npm install
 
 npm run dev
-automatically create tables
+
+
+
+it automatically create tables on database
+
+it runs the api
+
+
+the url for submit invoices using POST and HTTP JSON:
+{
+  "invoice_number": "12345",
+  "total": "199.99",
+  "currency": "USD",
+  "invoice_date": "2019-08-17",
+  "due_date": "2019-09-17",
+  "vendor_name": "Acme Cleaners Inc.",
+  "remittance_address": "123 ABC St. Charlotte, NC 28209"
+}
+
+http://localhost:3000/api/invoice
+
+
+and it runs the client too, only reading pending status, it use an interval of 3 seconds on src/client/components/App.js;
