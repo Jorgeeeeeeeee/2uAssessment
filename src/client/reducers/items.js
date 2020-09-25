@@ -20,6 +20,13 @@ let items = (state = [], action) => {
                 completed:false})
           )
            return fullA;
+       case 'LISTAR_INVOICES_ERROR':
+           return [
+             {
+                 error: action.payload,
+             }
+           ];
+           )
         case 'ADD_ITEMS':
             return [
                 ...state,

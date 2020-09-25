@@ -8,31 +8,31 @@ const Item = ({ onClick, completed, id, invoice_number, total, currency, invoice
       textDecoration: (status == 'Approved') ? 'line-through' : 'none'
     }}
   >
-  <div><b>Invoice Number</b>
+  <div><b>Invoice Number </b>
   {invoice_number}
   </div>
 
-  <div><b>Total</b>
+  <div><b>Total </b>
   {total}
   </div>
 
-  <div><b>Currency</b>
+  <div><b>Currency </b>
   {currency}
   </div>
 
-  <div><b>Invoice Date</b>
+  <div><b>Invoice Date </b>
     {invoice_date}
     </div>
 
-  <div><b>Due Date</b>
+  <div><b>Due Date </b>
     {due_date}
     </div>
 
-  <div><b>Vendor Name</b>
+  <div><b>Vendor Name </b>
     {vendor_name}
     </div>
 
-  <div><b>Remittance Address</b>
+  <div><b>Remittance Address </b>
     {remittance_address}
     </div>
   </li>
