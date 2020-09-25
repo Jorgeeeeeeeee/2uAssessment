@@ -25,8 +25,7 @@ let items = (state = [], action) => {
              {
                  error: action.payload,
              }
-           ];
-           )
+           ]
         case 'ADD_ITEMS':
             return [
                 ...state,
