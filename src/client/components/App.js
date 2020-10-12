@@ -2,8 +2,8 @@ import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import { listarItems } from '../actions';
 
-const App = ({ qty, dispatch }) => {
-    let input, item;
+const App = ({ dispatch }) => {
+    // let input, item;
 
     useEffect(() => {
 
